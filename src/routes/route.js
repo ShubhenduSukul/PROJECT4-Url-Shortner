@@ -1,11 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const Controller=require("../Controller/urlController.js")
 
-router.post("/urlShortern",Controller.urlShort);
-router.get("/:urlCode",Controller.redirect)
+const urlController = require("../Controllers/urlController")
 
+router.get("/test-me", function(req, res){
+    res.send({status : true, msg : "working"})
+})
 
+router.post("/url/shorten",urlController.createUrl)
 
+router.get("/:urlCode",urlController.getUrl)
 
 module.exports = router;
